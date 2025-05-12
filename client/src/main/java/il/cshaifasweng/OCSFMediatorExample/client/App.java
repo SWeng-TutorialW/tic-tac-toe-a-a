@@ -26,10 +26,11 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
     	EventBus.getDefault().register(this);
     	client = SimpleClient.getClient();
-    	client.openConnection();
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        client.openConnection();
+        scene = new Scene(loadFXML("primary"), 500, 600);
         stage.setScene(scene);
         stage.show();
+        System.out.println("Player ready");
     }
 
     static void setRoot(String fxml) throws IOException {
@@ -40,18 +41,18 @@ public class App extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
-    
-    
+
+
 
     @Override
 	public void stop() throws Exception {
 		// TODO Auto-generated method stub
     	EventBus.getDefault().unregister(this);
-        client.sendToServer("remove client");
+        client.sendToServer("leave game");
         client.closeConnection();
 		super.stop();
 	}
-    
+
     @Subscribe
     public void onWarningEvent(WarningEvent event) {
     	Platform.runLater(() -> {
@@ -62,7 +63,7 @@ public class App extends Application {
         	);
         	alert.show();
     	});
-    	
+
     }
 
 	public static void main(String[] args) {

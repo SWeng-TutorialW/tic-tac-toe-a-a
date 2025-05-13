@@ -119,8 +119,8 @@ public class SimpleServer extends AbstractServer {
 		// Check rows
 		if (field[0][0] != ' ' && field[0][0] == field[0][1] && field[0][1] == field[0][2])
 			return "00 01 02 " + field[0][0];
-		if (field[1][0] != ' ' && field[1][0] == field[1][1] && field[1][1] == field[0][2])
-			return "10 11 02 " + field[1][0];
+		if (field[1][0] != ' ' && field[1][0] == field[1][1] && field[1][1] == field[1][2])
+			return "10 11 12 " + field[1][0];
 		if (field[2][0] != ' ' && field[2][0] == field[2][1] && field[2][1] == field[2][2])
 			return "20 21 22 " + field[2][0];
 
